@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nice Pomodoro Timer</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Pomodoro</h1>
+      </header>
+
+      <section class="task">
+        <label for="taskInput">今は何に集中？</label>
+        <input id="taskInput" type="text" placeholder="例: 仕様書を書く、コードレビュー..." maxlength="120" />
+      </section>
+
+      <section class="durations" aria-label="時間を選択">
+        <button class="dur-btn" data-min="5">5</button>
+        <button class="dur-btn" data-min="10">10</button>
+        <button class="dur-btn" data-min="15">15</button>
+        <button class="dur-btn" data-min="25">25</button>
+        <button class="dur-btn" data-min="30">30</button>
+        <button class="dur-btn" data-min="45">45</button>
+        <button class="dur-btn" data-min="60">60</button>
+      </section>
+
+      <section class="timer">
+        <div id="timeDisplay" class="time">00:00</div>
+        <div class="progress-wrap">
+          <div id="progressBar" class="progress"></div>
+        </div>
+        <div id="statusText" class="status">待機中</div>
+      </section>
+
+      <section class="controls">
+        <button id="startBtn" class="primary">開始</button>
+        <button id="pauseBtn">一時停止</button>
+        <button id="resetBtn">リセット</button>
+      </section>
+
+      <footer>
+        <small>⏱️ いい感じのポモドーロ</small>
+      </footer>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+  </html>
+

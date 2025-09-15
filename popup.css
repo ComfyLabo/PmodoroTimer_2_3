@@ -1,0 +1,69 @@
+:root {
+  --bg: #0f172a;
+  --panel: #111827;
+  --text: #e5e7eb;
+  --subtle: #9ca3af;
+  --accent: #ef4444;
+  --accent-2: #22c55e;
+  --border: #1f2937;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  width: 320px;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans JP, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: linear-gradient(180deg, #0b1022, #0f172a 40%);
+}
+
+.container { padding: 14px 14px 10px; }
+
+header { display: flex; justify-content: center; margin-bottom: 6px; }
+h1 {
+  font-size: 18px; font-weight: 700; margin: 0; letter-spacing: 0.5px;
+}
+
+.task { margin: 8px 0 10px; }
+.task label { display: block; font-size: 12px; color: var(--subtle); margin-bottom: 6px; }
+#taskInput {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+}
+
+.durations { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.dur-btn {
+  border: 1px solid var(--border);
+  background: #0b1220;
+  color: var(--text);
+  padding: 8px 0;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+}
+.dur-btn:hover { border-color: #334155; }
+.dur-btn.active { background: #1b2338; border-color: #334155; color: #fff; }
+
+.timer { margin: 12px 0 6px; text-align: center; }
+.time { font-size: 38px; font-weight: 800; letter-spacing: 1px; }
+.status { margin-top: 4px; font-size: 12px; color: var(--subtle); height: 16px; }
+
+.progress-wrap { position: relative; width: 100%; height: 8px; background: #0b1220; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; margin-top: 8px; }
+.progress { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: linear-gradient(90deg, var(--accent), #f59e0b); }
+
+.controls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 12px; }
+.controls button { 
+  padding: 10px 8px; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 13px;
+  background: var(--panel); color: var(--text); border: 1px solid var(--border);
+}
+.controls button.primary { background: var(--accent); color: white; border-color: transparent; }
+.controls button.primary:hover { filter: brightness(1.05); }
+.controls button:hover { border-color: #334155; }
+
+footer { margin-top: 10px; text-align: center; color: var(--subtle); }
+
