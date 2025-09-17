@@ -36,9 +36,19 @@
       </section>
 
       <section class="controls">
-        <button id="startBtn" class="primary">開始</button>
-        <button id="pauseBtn">一時停止</button>
-        <button id="resetBtn">リセット</button>
+        <button id="startBtn" class="primary">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="stopBtn" class="danger">Stop</button>
+        <button id="resetBtn">Reset</button>
+      </section>
+
+      <section class="history">
+        <div class="history-header">
+          <h2>履歴</h2>
+          <button id="clearHistoryBtn" class="link-btn" type="button">クリア</button>
+        </div>
+        <ul id="historyList" class="history-list"></ul>
+        <div id="historyEmpty" class="history-empty">まだ履歴がありません</div>
       </section>
 
       <footer>
@@ -49,4 +59,3 @@
     <script src="popup.js"></script>
   </body>
   </html>
-
