@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Nice Pomodoro Timer",
   "description": "いい感じのポモドーロタイマー。5/10/15/25/30/45/60 分を選べて、何に集中するか入力できます。",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "action": {
     "default_title": "Pomodoro Timer",
     "default_popup": "popup.html"

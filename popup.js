@@ -77,14 +77,38 @@ function render(state) {
   if (resetBtn) resetBtn.textContent = 'Reset';
 }
 
-function formatHistoryTime(ms) {
-  if (!ms) return '--/-- --:--';
-  const d = new Date(ms);
+function formatHistoryTimestamp(ms) {
+  const value = Number(ms);
+  if (!Number.isFinite(value)) return null;
+  const d = new Date(value);
   const MM = (d.getMonth() + 1).toString().padStart(2, '0');
   const DD = d.getDate().toString().padStart(2, '0');
   const hh = d.getHours().toString().padStart(2, '0');
   const mm = d.getMinutes().toString().padStart(2, '0');
-  return `${MM}/${DD} ${hh}:${mm}`;
+  return {
+    date: `${MM}/${DD}`,
+    time: `${hh}:${mm}`,
+  };
+}
+
+function formatHistoryTimeLabel(entry) {
+  const startParts = formatHistoryTimestamp(entry?.startedAt);
+  const endParts = formatHistoryTimestamp(entry?.endedAt);
+
+  if (!startParts && !endParts) {
+    return '--/-- --:--';
+  }
+
+  if (startParts && endParts) {
+    const sameDay = startParts.date === endParts.date;
+    if (sameDay) {
+      return `${startParts.date} ${startParts.time} - ${endParts.time}`;
+    }
+    return `${startParts.date} ${startParts.time} - ${endParts.date} ${endParts.time}`;
+  }
+
+  const solo = startParts || endParts;
+  return `${solo.date} ${solo.time}`;
 }
 
 function resolveDurationMin(entry) {
@@ -134,7 +158,7 @@ function renderHistory(history) {
     li.dataset.index = String(index);
     const task = (entry?.task || '').trim();
     const duration = resolveDurationMin(entry);
-    const timeLabel = formatHistoryTime(entry?.endedAt || entry?.startedAt);
+    const timeLabel = formatHistoryTimeLabel(entry);
     const isEditing = ui.editingEntry?.index === index;
     const editingDurationRaw = ui.editingEntry?.durationMin;
     const editingDuration = Number(editingDurationRaw);
@@ -385,6 +409,9 @@ async function stopTimerManual() {
   } else {
     fetchHistory().then(renderHistory);
   }
+  if (result?.entry && taskInput) {
+    taskInput.value = '';
+  }
   stopTick();
 }
 
@@ -444,6 +471,9 @@ function setupEvents() {
       // Also refresh state display
       getState().then(render);
       fetchHistory().then(renderHistory);
+      if (msg.entry && taskInput) {
+        taskInput.value = '';
+      }
     }
   });
 }

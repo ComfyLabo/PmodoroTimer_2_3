@@ -217,6 +217,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     const state = await getState();
     // End timer
     await resetTimer();
+    let entry = null;
     if (state.isRunning) {
       const finishedAt = Date.now();
       const totalMs = (state.endTime ?? finishedAt) - (state.startTime ?? finishedAt);
@@ -224,7 +225,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
       const durationMin = Number.isFinite(state.durationMin) && state.durationMin > 0
         ? state.durationMin
         : fallbackMin;
-      const entry = {
+      entry = {
         task: state.task || '',
         durationMin,
         startedAt: state.startTime,
@@ -244,7 +245,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
       // Notifications may be disabled; ignore
     }
     // Inform any open popups to play a sound/update UI
-    chrome.runtime.sendMessage({ type: 'timer_ended' }).catch(() => {});
+    chrome.runtime.sendMessage({ type: 'timer_ended', entry }).catch(() => {});
   } else if (alarm.name === BADGE_ALARM) {
     await updateBadge();
   }
