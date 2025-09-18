@@ -244,6 +244,13 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     } catch (_) {
       // Notifications may be disabled; ignore
     }
+    if (state.isRunning) {
+      try {
+        await chrome.tabs.create({ url: chrome.runtime.getURL('celebration.html') });
+      } catch (_) {
+        // Creating a tab can fail if the user closed Chrome
+      }
+    }
     // Inform any open popups to play a sound/update UI
     chrome.runtime.sendMessage({ type: 'timer_ended', entry }).catch(() => {});
   } else if (alarm.name === BADGE_ALARM) {

@@ -1,0 +1,80 @@
+:root {
+  color-scheme: light dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at top, #ffb347, #ff5f6d 45%, #5b2c98);
+  font-family: 'Inter', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+  color: #fff;
+  text-align: center;
+  padding: 32px;
+}
+
+.card {
+  display: grid;
+  gap: 24px;
+  width: min(520px, 100%);
+  padding: 40px 32px;
+  background: rgba(17, 17, 40, 0.7);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.image-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.image-wrap img {
+  width: clamp(220px, 60vw, 320px);
+  height: auto;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 2.8rem);
+  letter-spacing: 0.04em;
+}
+
+.lead {
+  margin: 0;
+  font-size: clamp(1.05rem, 3.2vw, 1.2rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+button {
+  margin: 0 auto;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #2b164c;
+  background: linear-gradient(135deg, #ffe56b, #ffc857);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+button:hover,
+button:focus {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(255, 197, 87, 0.4);
+  outline: none;
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 20px rgba(255, 197, 87, 0.35);
+}
